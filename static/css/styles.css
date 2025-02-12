@@ -1,0 +1,41 @@
+/* body */
+
+body{
+    font-family: Monospace;
+    width: 100%;
+    background-color: #2d4f35;
+    background-image: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.01), rgba(255,255,255, 0.1) 1px, transparent 1px, transparent 6px);
+    background-size: 7px 7px;
+    margin: 0;
+    padding: 0;
+}
+
+/* container */
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+/* toolbar */
+
+.toolbar{
+    font-size: large;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.toolbar-l{
+    padding-left: 75px;
+    color: white;
+}
+
+.toolbar-r{
+    padding-right: 75px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
