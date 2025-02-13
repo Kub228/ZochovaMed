@@ -45,5 +45,7 @@ class Requests(db.Model):
     from_id = db.Column(db.Integer, nullable=False)#id pacienta
     to_id = db.Column(db.Integer, nullable=False)#id doktora
     description = db.Column(db.Text, nullable=False)#opis problemu pacienta
-    time_sent = db.Column(db.Datetime, nullable=False) #kedy bol request poslany
+    time_sent = db.Column(db.Date, nullable=False) #kedy bol request poslany
+
+
 
