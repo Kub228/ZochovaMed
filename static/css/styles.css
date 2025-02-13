@@ -1,7 +1,7 @@
 /* body */
 
 body{
-    font-family: Monospace;
+    font-family: Courier;
     width: 100%;
     background-color: #2d4f35;
     background-image: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.01), rgba(255,255,255, 0.1) 1px, transparent 1px, transparent 6px);
@@ -19,6 +19,14 @@ body{
 
 /* toolbar */
 
+.Title{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.med-heart{
+    color: rgb(137, 205, 143);
+}
+
 .toolbar{
     font-size: large;
     display: flex;
@@ -27,6 +35,9 @@ body{
 }
 
 .toolbar-l{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding-left: 75px;
     color: white;
 }
@@ -39,3 +50,57 @@ body{
     gap: 50px;
 }
 
+
+/* main */
+
+.main{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.roles{
+    display: flex;
+    flex-direction: row;
+    gap: 75px;
+}
+
+.sub-title-main{
+    color: rgb(182, 180, 180);
+}
+
+.patient, .doctor{
+    margin-top: 50px;
+    padding: 20px 200px 150px 35px;
+    border-radius: 15px;
+}
+
+.patient{
+    background-color: #60916b;
+    position: relative; /* Set relative positioning for the parent container */
+    overflow: hidden; /* Ensure content stays inside the rounded corners */
+}
+
+.doctor {
+    background-color: #509760;
+    position: relative; /* Set relative positioning for the parent container */
+    overflow: hidden; /* Ensure content stays inside the rounded corners */
+}
+
+.doc-img, .patient-img {
+    width: 200px; /* Fixed size for the image */
+    object-fit: cover; /* Prevent distortion */
+    position: absolute; /* Position the image absolutely within its parent */
+    bottom: -10%; /* Align to the bottom of the parent div */
+    left: 70%; /* Center horizontally within the div */
+    transform: translateX(-50%); /* Offset to center the image perfectly */
+}
+
+.sub-title-role{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
