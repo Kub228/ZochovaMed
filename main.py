@@ -17,21 +17,42 @@ app.secret_key = 'kluckluckluc'
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
 
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
+@app.route('/registerpacient', methods=['GET', 'POST'])
+def registerpacient():
     form = RegistrationFormPacient()
     if form.validate_on_submit():
         pacient = Pacient.query.filter_by(email=form.email.data).first()
         if pacient:
-            return redirect(url_for('register'))
+            return redirect(url_for('registerpacient'))
 
-        new_pacient = Pacient(first_name=form.firstname.data, last_name=form.lastname.data, email=form.email.data)
+        new_pacient = Pacient(first_name=form.firstname.data, last_name=form.lastname.data, tel_num = form.telnum.data, description=form.description.data , email=form.email.data)
         new_pacient.set_password(form.password.data)
         db.session.add(new_pacient)
         db.session.commit()
         return redirect(url_for('home'))
 
-    return render_template('register.html', form=form)
+    return render_template('registerpacient.html', form=form)
+
+@app.route('/registerdoctor', methods=['GET', 'POST'])
+def registerdoctor():
+    form = RegistrationFormDoctor()
+    if form.validate_on_submit():
+        doctor = Doctor.query.filter_by(email=form.email.data).first()
+        if doctor:
+            return redirect(url_for('registerdoctor'))
+
+        new_doctor = Doctor(first_name=form.firstname.data, last_name=form.lastname.data, tel_num = form.telnum.data, odbor=form.odbor.data , email=form.email.data)
+        new_doctor.set_password(form.password.data)
+        db.session.add(new_doctor)
+        db.session.commit()
+        return redirect(url_for('home'))
+
+    return render_template('registerdoctor.html', form=form)
+
+
+
+with app.app_context():
+    db.create_all()

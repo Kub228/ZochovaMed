@@ -12,7 +12,7 @@ class RegistrationFormPacient(FlaskForm):
     lastname = StringField('Your last name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     telnum = StringField('Your phone number', validators=[DataRequired()])
-    description = StringField('Something about yourself', validators=[DataRequired()])
+    description = TextAreaField('Something about yourself', validators=[DataRequired()])
     #este pridat datum narodenia
     password = PasswordField('Password', validators=[DataRequired()])
     password_confirm = PasswordField('Confirm password', validators=[DataRequired(), EqualTo('password')])
@@ -25,7 +25,7 @@ class RegistrationFormDoctor(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     telnum = StringField('Your phone number', validators=[DataRequired()])
     #este pridat datum narodenia
-    #este pridat odbor
+    odbor = StringField('Your field', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     password_confirm = PasswordField('Confirm password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')

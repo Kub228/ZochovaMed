@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="container-log-reg">
+    <div class="article-detail">
+        <form method="post" class="register-login">
+            {{ form.hidden_tag() }}
+            {{ form.firstname.label }} <br> {{ form.firstname() }} <br>
+            {{ form.lastname.label }} <br> {{ form.lastname() }} <br>
+            {{ form.email.label }} <br> {{ form.email() }} <br>
+            {{ form.telnum.label }} <br> {{ form.telnum() }} <br>
+            {{ form.description.label }} <br> {{ form.description(cols=50, rows=20) }} <br>
+            {{ form.password.label }} <br> {{ form.password() }} <br>
+            {{ form.password_confirm.label }} <br> {{ form.password_confirm() }} <br>
+            {{ form.submit() }}
+        </form>
+    </div>
+</div>
+</body>
+</html>
