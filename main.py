@@ -4,7 +4,6 @@ from flask_login import LoginManager
 from forms import RegistrationFormPacient, AddRequestFormular, RegistrationFormDoctor, LoginForm
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from models import Doctor, db, Pacient, Requests
-from flask_migrate import Migrate
 
 app = Flask(__name__)
 
@@ -52,7 +51,10 @@ def registerdoctor():
 
     return render_template('registerdoctor.html', form=form)
 
-
+@app.route('/explorepacient')
+def explorepacient():
+    doc = Doctor.query.all()
+    return render_template('explorepacient.html', doctors=doc)
 
 with app.app_context():
     db.create_all()
