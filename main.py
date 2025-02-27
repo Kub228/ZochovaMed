@@ -56,5 +56,11 @@ def explorepacient():
     doc = Doctor.query.all()
     return render_template('explorepacient.html', doctors=doc)
 
+@app.route('/viewdoctor/<int:id>')
+def viewdoctor(id):
+    doctorprofile = Doctor.query.get_or_404(id)
+    return render_template('viewdoctor.html', doctorprofile=doctorprofile)
+
+
 with app.app_context():
     db.create_all()

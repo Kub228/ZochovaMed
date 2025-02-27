@@ -7,10 +7,12 @@
 </head>
 <body>
     {% for i in doctors %}
+    <a href="{{ url_for('viewdoctor', id=i.id) }}" class="doctor_profile_click">
     <div class="doctor-profile">
         <h2>{{ i.first_name }}</h2>
 
     </div>
+    </a>
     {% endfor %}
 </body>
 </html>
