@@ -16,5 +16,10 @@
     <p>
         {{ doctorprofile.tel_num }}
     </p>
+    <form method="post" class="descriptionform">
+        {{ form.hidden_tag() }}
+        {{ form.problem_desc.label }} <br> {{ form.problem_desc() }} <br>
+        {{ form.send() }}
+    </form>
 </body>
 </html>

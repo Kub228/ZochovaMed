@@ -4,6 +4,8 @@ from flask_login import LoginManager
 from forms import RegistrationFormPacient, AddRequestFormular, RegistrationFormDoctor, LoginForm
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from models import Doctor, db, Pacient, Requests
+from datetime import datetime
+
 
 app = Flask(__name__)
 
@@ -56,10 +58,18 @@ def explorepacient():
     doc = Doctor.query.all()
     return render_template('explorepacient.html', doctors=doc)
 
-@app.route('/viewdoctor/<int:id>')
+@app.route('/viewdoctor/<int:id>', methods=['GET', 'POST'])
 def viewdoctor(id):
     doctorprofile = Doctor.query.get_or_404(id)
-    return render_template('viewdoctor.html', doctorprofile=doctorprofile)
+    form = AddRequestFormular()
+    if form.validate_on_submit():
+
+        new_request = Requests(description=form.problem_desc.data, time_sent=datetime.today().isoformat(), to_id=id, from_id=1)
+        db.session.add(new_request)
+        db.session.commit()
+        return redirect(url_for('home'))
+
+    return render_template('viewdoctor.html', doctorprofile=doctorprofile, form=form)
 
 
 with app.app_context():

@@ -2,6 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
+
 db = SQLAlchemy()
 
 
@@ -45,7 +47,7 @@ class Requests(db.Model):
     from_id = db.Column(db.Integer, nullable=False)#id pacienta
     to_id = db.Column(db.Integer, nullable=False)#id doktora
     description = db.Column(db.Text, nullable=False)#opis problemu pacienta
-    time_sent = db.Column(db.Date, nullable=False) #kedy bol request poslany
+    time_sent = db.Column(db.String, nullable=False) #kedy bol request poslany
 
 
 
