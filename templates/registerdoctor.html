@@ -1,25 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends '_base.html' %}
+
+{% block title %}Register Doctor{% endblock %}
+
+{% block content %}
 <div class="container-log-reg">
+    <h1>Register as a Doctor</h1>
     <div class="article-detail">
         <form method="post" class="register-login">
             {{ form.hidden_tag() }}
-            {{ form.firstname.label }} <br> {{ form.firstname() }} <br>
-            {{ form.lastname.label }} <br> {{ form.lastname() }} <br>
-            {{ form.email.label }} <br> {{ form.email() }} <br>
-            {{ form.telnum.label }} <br> {{ form.telnum() }} <br>
-            {{ form.odbor.label }} <br> {{ form.odbor() }} <br>
-            {{ form.password.label }} <br> {{ form.password() }} <br>
-            {{ form.password_confirm.label }} <br> {{ form.password_confirm() }} <br>
-            {{ form.submit() }}
+
+            <label for="firstname">{{ form.firstname.label }}</label>
+            {{ form.firstname(class_='form-input') }}
+
+            <label for="lastname">{{ form.lastname.label }}</label>
+            {{ form.lastname(class_='form-input') }}
+
+            <label for="email">{{ form.email.label }}</label>
+            {{ form.email(class_='form-input') }}
+
+            <label for="telnum">{{ form.telnum.label }}</label>
+            {{ form.telnum(class_='form-input') }}
+
+            <label for="odbor">{{ form.odbor.label }}</label>
+            {{ form.odbor(class_='form-input') }}
+
+            <label for="password">{{ form.password.label }}</label>
+            {{ form.password(class_='form-input') }}
+
+            <label for="password_confirm">{{ form.password_confirm.label }}</label>
+            {{ form.password_confirm(class_='form-input') }}
+
+            {{ form.submit(class_='btn-submit') }}
         </form>
+        <p class="redirect-login">
+            Already have an account? <a href="{{ url_for('login') }}">Log in here</a>
+        </p>
     </div>
 </div>
-</body>
-</html>
+{% endblock %}

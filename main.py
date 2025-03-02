@@ -21,6 +21,34 @@ def home():
     return render_template('home.html')
 
 
+@app.route('/about')
+def about():
+    return render_template('about_us.html')
+
+@app.route('/services')
+def services():
+    return render_template('services.html')
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+        flash(f'Thank you {name}, we have received your message!', 'success')
+        return redirect(url_for('contact'))
+    
+    return render_template('contact.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()  # Make sure you have LoginForm defined in your forms.py
+    if form.validate_on_submit():
+        # Add your authentication logic here
+        return redirect(url_for('home'))
+    return render_template('login.html', form=form)
+
+
 @app.route('/registerpacient', methods=['GET', 'POST'])
 def registerpacient():
     form = RegistrationFormPacient()
@@ -33,7 +61,7 @@ def registerpacient():
         new_pacient.set_password(form.password.data)
         db.session.add(new_pacient)
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('explorepacient'))
 
     return render_template('registerpacient.html', form=form)
 
@@ -49,7 +77,7 @@ def registerdoctor():
         new_doctor.set_password(form.password.data)
         db.session.add(new_doctor)
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('findpatients'))
 
     return render_template('registerdoctor.html', form=form)
 
@@ -70,6 +98,10 @@ def viewdoctor(id):
         return redirect(url_for('home'))
 
     return render_template('viewdoctor.html', doctorprofile=doctorprofile, form=form)
+
+@app.route('/findpatients')
+def findpatients():
+    return render_template('findpatients.html')
 
 
 with app.app_context():

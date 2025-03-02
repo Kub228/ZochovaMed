@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZochovaMed | Home</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div>
-        <p>Home</p>
+  <header>
+    <div class="navbar">
+      <div>
+        <a href="/" class="logo">ZochovaMed</a>
+        <i class="fa fa-heartbeat" style="font-size:35px;color:#9bffc7"></i>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
+  <main>
     {% block content %}
-
+    <!-- Page-specific content will be injected here -->
     {% endblock %}
+  </main>
+  <footer>
+    <p>&copy; 2025 ZochovaMed. Made by developer Maros & designer Jakub.</p>
+  </footer>
 </body>
 </html>

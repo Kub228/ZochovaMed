@@ -1,106 +1,631 @@
-/* body */
-
-body{
-    font-family: Courier;
-    width: 100%;
-    background-color: #2d4f35;
-    background-image: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.01), rgba(255,255,255, 0.1) 1px, transparent 1px, transparent 6px);
-    background-size: 7px 7px;
+/* General Reset */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("bg.jpg"); /* Adjusted relative path */
+    -webkit-background-size: cover; /* Ensures the image covers the entire screen (Webkit) */
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-attachment: fixed; /* Keeps the image fixed while scrolling */
+    color: #376150; /* Dark green text for contrast */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the body covers the full viewport height */
+}
+
+/* Header Styles */
+header {
+    background-color: #145A32; /* Dark green for header */
+    padding: 20px 0;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #E8F5E9; /* Light green logo text */
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #c9ffce; /* Light green navigation links */
+    padding: 8px 12px;
+}
+
+.nav-links a:hover {
+    background-color: #4c945a; /* Slightly lighter green on hover */
+    border-radius: 4px;
+}
+
+/* Main Content */
+main {
+    flex: 1; /* Allows main content to grow and push footer down if needed */
+    padding: 20px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #145A32; /* Dark green footer background */
+    color: #E8F5E9; /* Light green text for footer */
+    text-align: center; 
+    padding: 15px;
+}
+
+/* Form Container Styles (Shared for Doctor and Patient Registration) */
+.container-log-reg {
+    max-width: 600px; /* Restricts the width of the form container */
+    margin: 50px auto; /* Centers the container horizontally and vertically */
+    background-color: #ccfff4; /* White background for contrast inside form container */
+    padding: 30px; /* Adds spacing inside the container */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.container-log-reg h1 {
+    text-align: center; /* Centers the heading text */
+    margin-bottom: 20px; /* Adds spacing below the heading */
+}
+
+/* Form Styles (Shared for Doctor and Patient Registration) */
+.register-login label {
+    display: block; /* Ensures labels appear above inputs */
+    margin-bottom: 5px; /* Adds spacing between label and input */
+    font-weight: bold; /* Makes labels stand out */
+}
+
+.register-login .form-input,
+.register-login .form-textarea {
+    width: calc(100% - 20px); /* Full width with padding adjustment */
+    padding: 10px; /* Adds padding inside inputs and textarea */
+    margin-bottom: 15px; /* Adds spacing between inputs/textarea */
+    border-radius: 5px; /* Rounded corners for inputs/textarea */
+    border: 1px solid #ccc; /* Subtle border for inputs/textarea */
+}
+
+.register-login .form-textarea {
+   resize: vertical; /* Allows textarea resizing only vertically */
+   height: auto; /* Adapts height based on content */
+}
+
+.register-login .form-input:hover,
+.register-login .form-textarea:hover,
+.register-login .form-input:focus,
+.register-login .form-textarea:focus {
+   border-color: #145A32; /* Highlighted dark green border on hover/focus */
+   outline-color: #145A32; /* Matches focus outline with theme color */
+}
+
+.register-login .btn-submit {
+   width: calc(100% - 20px); /* Full width with padding adjustment */
+   padding: 10px; /* Adds padding inside button */
+   background-color:#145A32 ; 
+   color:white ;
+}
+
+/* Doctors Page Styles */
+.doctors-page {
+    max-width: 1200px;
+    margin: 30px auto; /* Centers the content horizontally */
+    padding: 20px; /* Adds spacing inside the page */
+    text-align: center; /* Centers the heading text */
+}
+
+.doctors-page h1 {
+    font-size: 2rem; /* Larger font size for the heading */
+    color: #145A32; /* Dark green heading color */
+    margin-bottom: 20px; /* Adds spacing below the heading */
+}
+
+/* Doctor List Grid */
+.doctor-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid layout */
+    gap: 20px; /* Spacing between doctor cards */
+}
+
+/* Doctor List Grid */
+.doctor-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal-width columns */
+    gap: 20px; /* Adds spacing between rows and columns */
+    margin-top: 20px; /* Adds some space above the grid */
+}
+
+/* Doctor Card Styles */
+.doctor-card {
+    text-decoration: none; /* Removes underline from links */
+}
+
+.doctor-profile {
+    background-color: #ccfff4; /* White background for contrast */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px; /* Adds spacing inside the card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+}
+
+.doctor-profile h2 {
+    font-size: 1.5rem; /* Slightly larger font for doctor names */
+    color: #1B3A2D; /* Dark green text color for names */
+}
+
+.doctor-profile p {
+    margin-top: 10px; /* Adds spacing between paragraphs */
+    color: #333; /* Neutral text color for details */
+}
+
+/* Hover Effects for Doctor Cards */
+.doctor-card:hover .doctor-profile {
+    transform: translateY(-5px); /* Slightly lifts the card on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Increases shadow on hover for emphasis */
+}
+
+/* Responsive Design to Adjust Layout on Smaller Screens */
+@media (max-width: 1024px) {
+    .doctor-list {
+        grid-template-columns: repeat(2, 1fr); /* Adjust to 2 cards per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .doctor-list {
+        grid-template-columns: repeat(1, 1fr); /* Adjust to 1 card per row on small screens */
+    }
+}
+
+/* Doctor Profile Page Styles */
+.doctor-profile-container {
+    max-width: 800px; /* Restrict width of the profile page */
+    margin: 50px auto; /* Center horizontally and add vertical spacing */
+    background-color: #ccfff4; /* White background for contrast */
+    padding: 20px; /* Add spacing inside the container */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Doctor Information Section */
+.doctor-info {
+    text-align: center; /* Center-align all doctor information */
+    margin-bottom: 30px; /* Add spacing below the doctor info section */
+}
+
+.doctor-name {
+    font-size: 2rem; /* Larger font size for the name */
+    color: #145A32; /* Dark green color for emphasis */
+    margin-bottom: 10px; /* Spacing below the name */
+}
+
+.doctor-specialization,
+.doctor-email,
+.doctor-phone {
+    font-size: 1rem; /* Standard font size for details */
+    color: #333; /* Neutral dark gray text color */
+    margin-bottom: 5px; /* Spacing between details */
+}
+
+/* Problem Description Form Section */
+.problem-form h2 {
+    font-size: 1.5rem; /* Slightly larger font size for form title */
+    color: #145A32; /* Dark green color for emphasis */
+    margin-bottom: 15px; /* Spacing below the title */
+}
+
+.descriptionform label {
+    display: block; /* Ensure labels appear above inputs/textarea */
+    margin-bottom: 5px; /* Add spacing between label and input/textarea */
+    font-weight: bold;
+}
+
+.descriptionform .form-textarea {
+    width: calc(100% - 20px); /* Full width with padding adjustment */
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.descriptionform .btn-submit {
+    width: calc(100% - 20px); /* Full width with padding adjustment */
+    padding: 10px;
+    background-color: #145A32; /* Dark green button background */
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.descriptionform .btn-submit:hover {
+    background-color: #1B5E20; /* Slightly lighter green on hover */
+}
+
+/* About Us Page Styles */
+.about-container {
+    max-width: 800px; /* Restrict width for better readability */
+    margin: 50px auto; /* Center horizontally and add vertical spacing */
+    background-color: #ccfff4; /* White background for contrast */
+    padding: 30px; /* Add spacing inside the container */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.about-container h1 {
+    font-size: 2rem; /* Larger font size for main heading */
+    color: #145A32; /* Dark green color */
+    text-align: center; /* Center-align heading */
+    margin-bottom: 20px; /* Add spacing below heading */
+}
+
+.about-container .intro {
+    font-size: 1rem; /* Standard paragraph size */
+    color: #333; /* Neutral dark gray text color */
+    line-height: 1.6; /* Improve readability with line height */
+    margin-bottom: 15px; /* Add spacing between paragraphs */
+}
+
+.vision-section h2,
+.why-choose-us h2 {
+    font-size: 1.5rem; /* Slightly smaller than main heading */
+    color: #145A32; /* Dark green color */
+    margin-top: 20px; /* Add spacing above subheadings */
+}
+
+.vision-section p,
+.why-choose-us p {
+    font-size: 1rem;
+    color: #333;
+}
+
+.about-list {
+    list-style-type: disc; /* Use bullet points for the list */
+    padding-left: 20px; /* Add left padding to align bullets properly */
+}
+
+.about-list li {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Services Page Styles */
+.services-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #ccfff4;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.services-container h1 {
+    font-size: 2rem;
+    color: #145A32;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.services-container p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.services-list {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.services-list li {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Contact Page Styles */
+.contact-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #ccfff4;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container h1 {
+    font-size: 2rem;
+    color: #145A32;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-container p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.contact-form .form-input,
+.contact-form .form-textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.contact-form .btn-submit {
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: #145A32;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+.contact-form .btn-submit:hover {
+   background-color:#1B5E20; /* Slightly lighter green hover */
+}
+
+/* Home Page Styles */
+.home-container {
+    text-align: center; /* Center all text */
+    margin: 50px auto; /* Add vertical spacing */
+    max-width: 800px; /* Restrict content width */
+}
+
+.home-container h1 {
+    font-size: 2.5rem; /* Large font size for the main heading */
+    color: #8fffcb; /* Dark green color */
+    margin-bottom: 20px; /* Spacing below heading */
+}
+
+.home-container .intro-text {
+    font-size: 1.2rem; /* Slightly larger font size for intro text */
+    color: #c1ffe5; /* Neutral dark gray text */
+    margin-bottom: 30px; /* Spacing below intro text */
+}
+
+/* Card Container */
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Spacing between cards */
+    flex-wrap: wrap; /* Ensure cards wrap on smaller screens */
+}
+
+/* Individual Cards */
+.card {
+    background-color: #ccfff4; /* White background for contrast */
+    border-radius: 8px; /* Rounded corners for modern look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px;
+    width: 300px; /* Fixed width for cards */
+    text-align: center;
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    color: #145A32; /* Dark green color for headings */
+    margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Button Styling in Cards */
+.btn-card {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #145A32; /* Dark green button background */
+    color: white; /* White text on button */
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline from links */
+}
+
+.btn-card:hover {
+    background-color: #1B5E20; /* Slightly lighter green on hover */
+}
+
+/* Login Container Styles */
+.login-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #ccfff4;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.login-container h1 {
+    margin-bottom: 20px;
+    color: #145A32;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.login-form .form-input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.Select-role-title{
+    font-size: larger;
+    font-weight: bold;
+    color: #1B3A2D;
+}
+
+.role-selection {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    margin: 15px;
+    text-align: left;
+}
+
+.role-selection input[type="radio"] {
+    margin-right: 5px;
+}
+
+.btn-submit {
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: #145A32;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #1B5E20;
+}
+
+.redirect-login, .redirect-register {
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.redirect-login a, .redirect-register a {
+    color: #145A32;
+    text-decoration: underline;
+}
+
+/* Container for Patient Requests */
+.patient-requests-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #ccfff4; /* White background */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.patient-requests-container h1 {
+    font-size: 2rem;
+    color: #145A32; /* Dark green heading */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Styling for the list of requests */
+.patient-request-list {
+    list-style-type: none;
     padding: 0;
 }
 
-/* container */
-
-.container{
+.patient-request-item {
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
     display: flex;
-    flex-direction: column;
-}
-
-/* toolbar */
-
-.Title{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-.med-heart{
-    color: rgb(137, 205, 143);
-}
-
-.toolbar{
-    font-size: large;
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
-}
-
-.toolbar-l{
-    display: flex;
-    flex-direction: row;
     align-items: center;
-    padding-left: 75px;
+}
+
+.patient-request-item:last-child {
+    border-bottom: none;
+}
+
+/* Request details section */
+.request-details p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Actions for each request */
+.request-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-action {
+    padding: 8px 15px;
+    text-decoration: none;
     color: white;
+    border-radius: 4px;
+    font-size: 0.9rem;
 }
 
-.toolbar-r{
-    padding-right: 75px;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
+.btn-action.accept {
+    background-color: #4CAF50; /* Accept: Green */
+}
+
+.btn-action.decline {
+    background-color: #F44336; /* Decline: Red */
+}
+
+.btn-action:hover {
+    opacity: 0.9;
 }
 
 
-/* main */
-
-.main{
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
+/* Footer Styles */
+footer {
+    background-color: #145A32; /* Dark green footer background */
+    color: #E8F5E9; /* Light green text for footer */
+    text-align: center; 
+    padding: 15px;
 }
 
-.roles{
-    display: flex;
-    flex-direction: row;
-    gap: 75px;
-}
+/* Responsive Design for Smaller Screens (Mobile) */
+@media (max-width: 768px) {
+   .navbar {
+       flex-direction: column; /* Stack items vertically on smaller screens */
+   }
 
-.sub-title-main{
-    color: rgb(182, 180, 180);
-}
+   .nav-links {
+       flex-direction: column; /* Stack navigation links vertically */
+       align-items: center; 
+   }
 
-.patient, .doctor{
-    margin-top: 50px;
-    padding: 20px 200px 150px 35px;
-    border-radius: 15px;
-}
-
-.patient{
-    background-color: #60916b;
-    position: relative; /* Set relative positioning for the parent container */
-    overflow: hidden; /* Ensure content stays inside the rounded corners */
-}
-
-.doctor {
-    background-color: #509760;
-    position: relative; /* Set relative positioning for the parent container */
-    overflow: hidden; /* Ensure content stays inside the rounded corners */
-}
-
-.doc-img, .patient-img {
-    width: 200px; /* Fixed size for the image */
-    object-fit: cover; /* Prevent distortion */
-    position: absolute; /* Position the image absolutely within its parent */
-    bottom: -10%; /* Align to the bottom of the parent div */
-    left: 70%; /* Center horizontally within the div */
-    transform: translateX(-50%); /* Offset to center the image perfectly */
-}
-
-.sub-title-role{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
+   .nav-links li {
+       margin-left: 0; /* Remove left margin for stacked links */
+       margin-bottom: 10px; /* Add spacing between stacked links */
+   }
 }

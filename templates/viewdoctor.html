@@ -1,25 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>{{ doctorprofile.first_name }} {{ doctorprofile.last_name }}</h1>
-    <p>
-        {{ doctorprofile.odbor }}
-    </p>
-    <p>
-        {{ doctorprofile.email }}
-    </p>
-    <p>
-        {{ doctorprofile.tel_num }}
-    </p>
-    <form method="post" class="descriptionform">
-        {{ form.hidden_tag() }}
-        {{ form.problem_desc.label }} <br> {{ form.problem_desc() }} <br>
-        {{ form.send() }}
-    </form>
-</body>
-</html>
+{% extends '_base.html' %}
+
+{% block title %}Doctor Profile{% endblock %}
+
+{% block content %}
+<div class="doctor-profile-container">
+    <div class="doctor-info">
+        <h1 class="doctor-name">{{ doctorprofile.first_name }} {{ doctorprofile.last_name }}</h1>
+        <p class="doctor-specialization">Specialization: {{ doctorprofile.odbor }}</p>
+        <p class="doctor-email">Email: {{ doctorprofile.email }}</p>
+        <p class="doctor-phone">Phone: {{ doctorprofile.tel_num }}</p>
+    </div>
+
+    <div class="problem-form">
+        <form method="post" class="descriptionform">
+            {{ form.hidden_tag() }}
+            <h2><label for="problem_desc">{{ form.problem_desc.label }}</label></h2>
+            {{ form.problem_desc(class_='form-textarea') }}
+            {{ form.send(class_='btn-submit') }}
+        </form>
+    </div>
+</div>
+{% endblock %}

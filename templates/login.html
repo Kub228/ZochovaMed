@@ -1,0 +1,31 @@
+{% extends '_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h1>Login</h1>
+    <form method="post" class="login-form">
+        {{ form.hidden_tag() }}
+        
+        <label for="email">Email:</label>
+        {{ form.email(class_='form-input') }}
+        
+        <label for="password">Password:</label>
+        {{ form.password(class_='form-input') }}
+        
+        <p class='Select-role-title'>Select Role:</p>
+        <div class="role-selection">
+            <input type="radio" id="patient" name="role" value="patient" required>
+            <label for="patient">Patient</label>
+            <input type="radio" id="doctor" name="role" value="doctor" required>
+            <label for="doctor">Doctor</label>
+        </div>
+
+        {{ form.submit(class_='btn-submit') }}
+    </form>
+    <p class="redirect-register">
+        Don't have an account? <a href="{{ url_for('registerpacient') }}">Register as Patient</a> or <a href="{{ url_for('registerdoctor') }}">Register as Doctor</a>
+    </p>
+</div>
+{% endblock %}

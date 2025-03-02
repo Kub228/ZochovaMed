@@ -1,18 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% for i in doctors %}
-    <a href="{{ url_for('viewdoctor', id=i.id) }}" class="doctor_profile_click">
-    <div class="doctor-profile">
-        <h2>{{ i.first_name }}</h2>
+{% extends '_base.html' %}
 
-    </div>
-    </a>
-    {% endfor %}
-</body>
-</html>
+{% block title %}Doctor Profile{% endblock %}
+
+{% block content %}
+    <main class="doctors-page">
+        <h1>Our Doctors</h1>
+        <div class="doctor-list">
+            {% for i in doctors %}
+            <a href="{{ url_for('viewdoctor', id=i.id) }}" class="doctor-card">
+                <div class="doctor-profile">
+                    <h2>{{ i.first_name }} {{ i.last_name }}</h2>
+                    <p>Specialization: {{ i.specialization }}</p>
+                    <p>Experience: {{ i.experience }} years</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
