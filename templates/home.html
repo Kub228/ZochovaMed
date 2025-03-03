@@ -5,6 +5,15 @@
 {% block content %}
 <div class="home-container">
     <h1>Welcome to ZochovaMed</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert {{ category }}" id="hideMe">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
     <p class="intro-text">Find the right doctor for your needs or join our platform as a healthcare professional.</p>
     <div class="card-container">
         <!-- Patient Registration Card -->
@@ -12,12 +21,19 @@
             <h2>Register as a Patient</h2>
             <p>Are you looking for the best doctors? Register now to find and book appointments with trusted healthcare professionals.</p>
             <a href="{{ url_for('registerpacient') }}" class="btn-card">Register as Patient</a>
+            <br>
+            <br>
+            <p>OR</p><a href="{{ url_for('login') }}">Log in</a>
         </div>
         <!-- Doctor Registration Card -->
         <div class="card">
             <h2>Register as a Doctor</h2>
             <p>Are you a healthcare professional? Join our platform to connect with patients and grow your practice.</p>
+            <br>
             <a href="{{ url_for('registerdoctor') }}" class="btn-card">Register as Doctor</a>
+            <br>
+            <br>
+            <p>OR</p><a href="{{ url_for('login') }}">Log in</a>
         </div>
     </div>
 </div>

@@ -629,3 +629,51 @@ footer {
        margin-bottom: 10px; /* Add spacing between stacked links */
    }
 }
+
+
+.requeststyle {
+    color: #ccc;
+}
+
+.nodecor {
+    text-decoration: none;
+    color: #1B3A2D;
+}
+
+
+.backbutton {
+    background-color:#145A32;
+    color:#ccc;
+    padding: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.alert {
+    background-color: #88f5b5;
+    color: #1a7e47;
+    padding: 15px;
+    margin: 20px 0;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease, margin 0.5s ease, padding 0.5s ease;
+    opacity: 1;
+}
+
+
+.alert.success {
+    background-color: #88f5b5;
+    color: #1a7e47;
+}
+
+
+.alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    
+}
+
+
+
+

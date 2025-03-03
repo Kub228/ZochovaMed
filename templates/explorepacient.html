@@ -10,8 +10,7 @@
             <a href="{{ url_for('viewdoctor', id=i.id) }}" class="doctor-card">
                 <div class="doctor-profile">
                     <h2>{{ i.first_name }} {{ i.last_name }}</h2>
-                    <p>Specialization: {{ i.specialization }}</p>
-                    <p>Experience: {{ i.experience }} years</p>
+                    <p>Specialization: {{ i.odbor }}</p>
                 </div>
             </a>
             {% endfor %}

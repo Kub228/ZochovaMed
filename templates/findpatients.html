@@ -3,8 +3,27 @@
 {% block title %}Patient Requests{% endblock %}
 
 {% block content %}
-<div class="patient-requests-container">
-    <h1>Patient Meeting Requests</h1>
-    <p>You have no new patient requests at the moment.</p>
-</div>
+    <main class="doctors-page">
+    <h2>Patient Requests</h2>
+    
+    {% if current_user.is_authenticated and current_user.__class__.__name__ == 'Doctor' %}
+            <div class="doctor-list">
+            {% for request in requests %}
+                <a href="{{ url_for('view_request', request_id=request.id) }}" class="nodecor">
+                    
+                    <div class="doctor-profile">
+                    <h3>Description:</h3>
+                    {{ request.description }}
+                    <br>
+                    {{ request.time_sent|datetimeformat  }}
+                    </div>
+                </a>
+
+            {% endfor %}
+            </div>
+    {% else %}
+        <p>You must be logged in as a doctor to view requests.</p>
+    {% endif %}
+    
+    </main>
 {% endblock %}

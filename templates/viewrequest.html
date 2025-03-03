@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+
+{% block title %}Request Details{% endblock %}
+
+{% block content %}
+    <div class="doctor-profile-container">
+    <h2>{{ pacient.first_name }} {{ pacient.last_name }}</h2>
+    <p>Email: {{ pacient.email }}</p>
+    <p>Tel. num.: {{ pacient.tel_num }}</p>
+    <p>Description: {{ pacient.description }}</p>
+    <br>
+    <a href="{{ url_for('findpatients') }}" class="backbutton">Back to Requests</a>
+    </div>
+{% endblock %}

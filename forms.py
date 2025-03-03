@@ -32,7 +32,7 @@ class RegistrationFormDoctor(FlaskForm):
 
 
 
-class LoginForm(FlaskForm):
+class LoginFormDoctor(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Heslo', validators=[DataRequired()])
     submit = SubmitField('Prihlásiť sa')
