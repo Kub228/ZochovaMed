@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField, PasswordField
+from flask_wtf.file import FileField, FileAllowed
 from wtforms.validators import DataRequired, Email, EqualTo
 
 class AddRequestFormular(FlaskForm):
@@ -13,7 +14,7 @@ class RegistrationFormPacient(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     telnum = StringField('Your phone number', validators=[DataRequired()])
     description = TextAreaField('Something about yourself', validators=[DataRequired()])
-    #este pridat datum narodenia
+    profile_image = FileField('Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     password = PasswordField('Password', validators=[DataRequired()])
     password_confirm = PasswordField('Confirm password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
@@ -24,7 +25,7 @@ class RegistrationFormDoctor(FlaskForm):
     lastname = StringField('Your last name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     telnum = StringField('Your phone number', validators=[DataRequired()])
-    #este pridat datum narodenia
+    profile_image = FileField('Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
     odbor = StringField('Your field', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     password_confirm = PasswordField('Confirm password', validators=[DataRequired(), EqualTo('password')])

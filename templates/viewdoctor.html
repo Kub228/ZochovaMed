@@ -5,6 +5,7 @@
 {% block content %}
 <div class="doctor-profile-container">
     <div class="doctor-info">
+        <img src="{{ url_for('static', filename='profilepics/' + doctorprofile.profile_image) }}" alt="Doctor Profile Image" width="150" class="profimg">
         <h1 class="doctor-name">{{ doctorprofile.first_name }} {{ doctorprofile.last_name }}</h1>
         <p class="doctor-specialization">Specialization: {{ doctorprofile.odbor }}</p>
         <p class="doctor-email">Email: {{ doctorprofile.email }}</p>

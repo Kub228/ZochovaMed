@@ -5,10 +5,14 @@ from forms import RegistrationFormPacient, AddRequestFormular, RegistrationFormD
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from models import Doctor, db, Pacient, Requests
 from datetime import datetime
+import os
+from werkzeug.utils import secure_filename
 
+UPLOAD_FOLDER = 'static/profilepics'
 
 app = Flask(__name__)
 
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -74,7 +78,14 @@ def registerpacient():
         if pacient:
             return redirect(url_for('registerpacient'))
 
-        new_pacient = Pacient(first_name=form.firstname.data, last_name=form.lastname.data, tel_num = form.telnum.data, description=form.description.data , email=form.email.data)
+        image_file = 'default.jpg'
+        if form.profile_image.data:
+            filename = secure_filename(form.profile_image.data.filename)
+            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            form.profile_image.data.save(image_path)
+            image_file = filename
+
+        new_pacient = Pacient(first_name=form.firstname.data, last_name=form.lastname.data, tel_num = form.telnum.data, description=form.description.data , email=form.email.data,profile_image=image_file)
         new_pacient.set_password(form.password.data)
         db.session.add(new_pacient)
         db.session.commit()
@@ -90,7 +101,18 @@ def registerdoctor():
         if doctor:
             return redirect(url_for('registerdoctor'))
 
-        new_doctor = Doctor(first_name=form.firstname.data, last_name=form.lastname.data, tel_num = form.telnum.data, odbor=form.odbor.data , email=form.email.data)
+        image_file = 'default.jpg'
+        if form.profile_image.data:
+            print("Profile image received!")  # Debugging line to check if image data is coming through
+            filename = secure_filename(form.profile_image.data.filename)
+            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            form.profile_image.data.save(image_path)
+            image_file = filename
+        else:
+            print("No profile image uploaded!")  
+
+
+        new_doctor = Doctor(first_name=form.firstname.data, last_name=form.lastname.data, tel_num = form.telnum.data, odbor=form.odbor.data , email=form.email.data,profile_image=image_file)
         new_doctor.set_password(form.password.data)
         db.session.add(new_doctor)
         db.session.commit()

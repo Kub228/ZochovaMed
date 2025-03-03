@@ -6,7 +6,8 @@
 <div class="container-log-reg">
     <h1>Register as a Doctor</h1>
     <div class="article-detail">
-        <form method="post" class="register-login">
+        <form method="POST" enctype="multipart/form-data" class="register-login">
+
             {{ form.hidden_tag() }}
 
             <label for="firstname">{{ form.firstname.label }}</label>
@@ -20,7 +21,8 @@
 
             <label for="telnum">{{ form.telnum.label }}</label>
             {{ form.telnum(class_='form-input') }}
-
+            <label for="profile_image">{{ form.profile_image.label }}</label>
+            {{ form.profile_image }}
             <label for="odbor">{{ form.odbor.label }}</label>
             {{ form.odbor(class_='form-input') }}
 

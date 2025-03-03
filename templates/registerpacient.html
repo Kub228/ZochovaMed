@@ -6,7 +6,8 @@
 <div class="container-log-reg">
     <h1>Register a Patient</h1>
     <div class="article-detail">
-        <form method="post" class="register-login">
+        <form method="POST" enctype="multipart/form-data" class="register-login">
+
             {{ form.hidden_tag() }}
 
             <label for="firstname">{{ form.firstname.label }}</label>
@@ -23,7 +24,8 @@
 
             <label for="description">{{ form.description.label }}</label>
             {{ form.description(class_='form-textarea', cols=50, rows=5) }}
-
+            <label for="profile_image">{{ form.profile_image.label }}</label>
+            {{ form.profile_image }}
             <label for="password">{{ form.password.label }}</label>
             {{ form.password(class_='form-input') }}
 

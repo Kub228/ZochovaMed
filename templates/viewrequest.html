@@ -4,11 +4,14 @@
 
 {% block content %}
     <div class="doctor-profile-container">
+    <div class="doctor-info">
+    <img src="{{ url_for('static', filename='profilepics/' + pacient.profile_image) }}" alt="Patient Profile Image" width="150" class="profimg">
     <h2>{{ pacient.first_name }} {{ pacient.last_name }}</h2>
     <p>Email: {{ pacient.email }}</p>
     <p>Tel. num.: {{ pacient.tel_num }}</p>
     <p>Description: {{ pacient.description }}</p>
     <br>
     <a href="{{ url_for('findpatients') }}" class="backbutton">Back to Requests</a>
+    </div>
     </div>
 {% endblock %}

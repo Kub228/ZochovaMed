@@ -15,6 +15,7 @@ class Pacient(UserMixin, db.Model):
     tel_num = db.Column(db.String(120), unique=True, nullable=False) #telefonne cislo
     password_hash = db.Column(db.String(128), nullable=False)
     description = db.Column(db.Text, nullable=False) # nieco o pacientovy
+    profile_image = db.Column(db.String(255), nullable=True, default='default.jpg')
 
 
     def set_password(self, password):
@@ -33,6 +34,7 @@ class Doctor(UserMixin, db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     #date_birth = db.Column(db.Date, nullable=False)
     odbor = db.Column(db.String(80)) # zameranie doktora (psycholog, chirurg, ...)
+    profile_image = db.Column(db.String(255), nullable=True, default='default.jpg')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

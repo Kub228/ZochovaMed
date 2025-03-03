@@ -12,8 +12,9 @@
                 <a href="{{ url_for('view_request', request_id=request.id) }}" class="nodecor">
                     
                     <div class="doctor-profile">
+                    
                     <h3>Description:</h3>
-                    {{ request.description }}
+                    {{ request.description[:75] }}
                     <br>
                     {{ request.time_sent|datetimeformat  }}
                     </div>
