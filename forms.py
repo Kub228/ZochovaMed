@@ -25,7 +25,7 @@ class RegistrationFormDoctor(FlaskForm):
     lastname = StringField('Your last name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     telnum = StringField('Your phone number', validators=[DataRequired()])
-    profile_image = FileField('Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    profile_image = FileField('Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeh'])])
     odbor = StringField('Your field', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     password_confirm = PasswordField('Confirm password', validators=[DataRequired(), EqualTo('password')])

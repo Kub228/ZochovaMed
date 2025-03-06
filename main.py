@@ -48,6 +48,14 @@ app.jinja_env.filters["datetimeformat"] = datetimeformat
 def home():
     return render_template('home.html')
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    session.clear()
+    flash('You have been logged out.', 'success')
+    return redirect(url_for('home'))
+
 
 @app.route('/about')
 def about():
@@ -89,7 +97,10 @@ def registerpacient():
         new_pacient.set_password(form.password.data)
         db.session.add(new_pacient)
         db.session.commit()
-        return redirect(url_for('home'))
+        login_user(new_pacient)
+        session['user_role'] = 'Pacient'
+        flash('Registration successful', 'success')
+        return redirect(url_for('explorepacient'))
 
     return render_template('registerpacient.html', form=form)
 
@@ -103,21 +114,21 @@ def registerdoctor():
 
         image_file = 'default.jpg'
         if form.profile_image.data:
-            print("Profile image received!")  # Debugging line to check if image data is coming through
             filename = secure_filename(form.profile_image.data.filename)
             image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             form.profile_image.data.save(image_path)
             image_file = filename
-        else:
-            print("No profile image uploaded!")  
+
 
 
         new_doctor = Doctor(first_name=form.firstname.data, last_name=form.lastname.data, tel_num = form.telnum.data, odbor=form.odbor.data , email=form.email.data,profile_image=image_file)
         new_doctor.set_password(form.password.data)
         db.session.add(new_doctor)
         db.session.commit()
+        login_user(new_doctor)
+        session['user_role'] = 'Doctor'
         flash('Registration successful', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('findpatients'))
 
     return render_template('registerdoctor.html', form=form)
 
@@ -133,13 +144,13 @@ def login():
             login_user(userdoctor)
             session['user_role'] = 'Doctor'  
             flash('Logged in as doctor', 'success')
-            return redirect(url_for('home'))
+            return redirect(url_for('findpatients'))
         
         elif userpatient and userpatient.check_password(form.password.data):
             login_user(userpatient)
             session['user_role'] = 'Pacient'  
             flash('Logged in as patient', 'success')
-            return redirect(url_for('home'))
+            return redirect(url_for('explorepacient'))
         
         else:
             flash('Incorrect email or password', 'error')
@@ -152,7 +163,7 @@ def login():
 
 
 @app.route('/explorepacient')
-@login_required
+
 def explorepacient():
     doc = Doctor.query.all()
     return render_template('explorepacient.html', doctors=doc)
@@ -175,7 +186,7 @@ def viewdoctor(id):
 @app.route('/findpatients')
 @login_required
 def findpatients():
-    if session.get('user_role') != 'Doctor':  # Use session role for security
+    if session.get('user_role') != 'Doctor':  
         flash("Access denied. Patients cannot view this page.", "error")
         return redirect(url_for('home'))
     

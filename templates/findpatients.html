@@ -4,6 +4,15 @@
 
 {% block content %}
     <main class="doctors-page">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert {{ category }}" id="hideMe">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
     <h2>Patient Requests</h2>
     
     {% if current_user.is_authenticated and current_user.__class__.__name__ == 'Doctor' %}

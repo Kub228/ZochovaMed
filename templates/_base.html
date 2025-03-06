@@ -19,13 +19,15 @@
           <li><a href="/">Home</a></li>
           {% if session['user_role'] == 'Doctor' %}
           <li><a href="/findpatients">Explore</a></li>
-          {% endif %}
-          {% if session['user_role'] == 'Pacient' %}
+          {% else %}
           <li><a href="/explorepacient">Explore</a></li>
           {% endif %}
           <li><a href="/about">About Us</a></li>
           <li><a href="/services">Services</a></li>
           <li><a href="/contact">Contact</a></li>
+          {% if current_user.is_authenticated %}
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          {% endif %}
         </ul>
       </nav>
     </div>
