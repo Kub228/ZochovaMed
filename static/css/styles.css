@@ -7,10 +7,10 @@
 
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family:'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
-    background-image: url("bg.jpg"); /* Adjusted relative path */
+    background-image: url("bg.png"); /* Adjusted relative path */
     -webkit-background-size: cover; /* Ensures the image covers the entire screen (Webkit) */
     background-size: cover; /* Ensures the image covers the entire screen */
     background-position: center; /* Centers the image */
@@ -24,8 +24,19 @@ body {
 
 /* Header Styles */
 header {
+
+    margin: 15px;
+    border-radius: 15px;
     background-color: #145A32; /* Dark green for header */
-    padding: 20px 0;
+    padding: 20px 10px;
+}
+
+header {
+    transition: transform 0.3s ease;
+}
+
+header:hover {
+    transform: translateY(-5px);
 }
 
 .navbar {
@@ -37,12 +48,20 @@ header {
 }
 
 
-
 .logo {
     font-size: 1.8em;
     font-weight: bold;
     color: #E8F5E9; /* Light green logo text */
     text-decoration: none;
+    transition: background-color 0.3s ease, border-radius 0.3s ease, font-size 0.3s ease; /* Smooth transition for background color, border radius, and font size */
+    border-radius: 8px; /* Rounded corners for the logo background */
+}
+
+.logo:hover {
+    padding: 5px;
+    background-color: #42946b; /* Slightly lighter green on hover */
+    border-radius: 12px; /* More rounded corners on hover */
+    font-size: 2em; /* Slightly larger font size on hover */
 }
 
 .nav-links {
@@ -58,11 +77,29 @@ header {
     text-decoration: none;
     color: #c9ffce; /* Light green navigation links */
     padding: 8px 12px;
+    transition: background-color 0.3s ease, border-radius 0.3s ease, font-size 0.3s ease;
 }
 
 .nav-links a:hover {
+    font-size: 1.2em;
     background-color: #4c945a; /* Slightly lighter green on hover */
     border-radius: 4px;
+ /* Makes the text jump lightly */
+}
+
+a {
+    text-decoration: none;
+    color: #3a563d; /* Light green navigation links */
+    padding: 8px 12px;
+    transition: background-color 0.3s ease, border-radius 0.3s ease, font-size 0.3s ease;
+}
+
+a:hover {
+    color: #c9ffce; /* Light green navigation links */
+    font-size: 1.2em;
+    background-color: #4c945a; /* Slightly lighter green on hover */
+    border-radius: 4px;
+ /* Makes the text jump lightly */
 }
 
 /* Main Content */
@@ -73,10 +110,17 @@ main {
 
 /* Footer Styles */
 footer {
+    margin: 15px;
+    border-radius: 15px;
     background-color: #145A32; /* Dark green footer background */
     color: #E8F5E9; /* Light green text for footer */
     text-align: center; 
     padding: 15px;
+    transition: background-color 0.3s ease, border-radius 0.3s ease, transform 0.3s ease;
+}
+
+footer:hover {
+    transform: translateY(-5px);
 }
 
 /* Form Container Styles (Shared for Doctor and Patient Registration) */
@@ -140,7 +184,7 @@ footer {
 
 .doctors-page h1 {
     font-size: 2rem; /* Larger font size for the heading */
-    color: #145A32; /* Dark green heading color */
+    color: #6bc592; /* Dark green heading color */
     margin-bottom: 20px; /* Adds spacing below the heading */
 }
 
@@ -513,6 +557,7 @@ footer {
 }
 
 .btn-submit {
+    font-family: monospace; /* Change font to monospace */
     width: calc(100% - 20px);
     padding: 10px;
     background-color: #145A32;
@@ -520,10 +565,54 @@ footer {
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    transition: font-size 0.3s ease, font-family 0.3s ease, color 0.3s ease, background-color 0.3s ease; /* Smooth transition for font size, family, color, and background color */
 }
 
 .btn-submit:hover {
-    background-color: #1B5E20;
+    background-color: #48914e;
+    font-size: calc(100% + 3px); /* Increase font size by 3px */
+}
+
+.pf-image {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #145A32; /* Dark green background */
+    color: #E8F5E9; /* Light green text */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pf-image input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+}
+
+.pf-image:hover {
+    background-color: #347c39; /* Slightly lighter green on hover */
+    color: #c9ffce; /* Lighter text color on hover */
+}
+
+.pf-image img {
+    display: none;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.pf-image img.show {
+    display: block;
 }
 
 .redirect-login, .redirect-register {
@@ -615,19 +704,38 @@ footer {
 
 /* Responsive Design for Smaller Screens (Mobile) */
 @media (max-width: 768px) {
-   .navbar {
-       flex-direction: column; /* Stack items vertically on smaller screens */
-   }
+    .navbar {
+         flex-direction: column; /* Stack items vertically on smaller screens */
+    }
 
-   .nav-links {
-       flex-direction: column; /* Stack navigation links vertically */
-       align-items: center; 
-   }
+    .nav-links {
+         display: none; /* Hide navigation links by default */
+         flex-direction: column; /* Stack navigation links vertically */
+         align-items: center; 
+    }
 
-   .nav-links li {
-       margin-left: 0; /* Remove left margin for stacked links */
-       margin-bottom: 10px; /* Add spacing between stacked links */
-   }
+    .nav-links li {
+         margin-left: 0; /* Remove left margin for stacked links */
+         margin-bottom: 10px; /* Add spacing between stacked links */
+    }
+
+    .menu-toggle {
+         display: block; /* Show the menu toggle button */
+         cursor: pointer;
+         background-color: #145A32; /* Dark green background */
+         color: #E8F5E9; /* Light green text */
+         padding: 10px;
+         border-radius: 5px;
+         text-align: center;
+    }
+
+    .menu-toggle:hover {
+         background-color: #1B5E20; /* Slightly lighter green on hover */
+    }
+
+    .menu-toggle.active + .nav-links {
+         display: flex; /* Show navigation links when menu is active */
+    }
 }
 
 
